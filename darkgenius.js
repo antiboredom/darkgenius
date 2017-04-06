@@ -147,6 +147,14 @@ var effects = {
     }
   },
 
+  bgColor: function(el) {
+    el.hover(function(e){
+      $('body').css({backgroundColor: el.data('bg') || '#000', color: el.data('fg') || '#fff'});
+    }, function(e){
+      $('body').css({backgroundColor: '', color: ''});
+    });
+  },
+
   popover: function(el){
     el.on('mouseenter', function() {
       var src = el.data('media'),
@@ -219,6 +227,7 @@ var effects = {
 effects.init();
 
 $('.annotate').each(function(el) {
+  console.log($(this).data('effect'));
   effects[$(this).data('effect')]($(this));
 });
 
