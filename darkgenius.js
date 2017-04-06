@@ -38,11 +38,11 @@ var effects = {
       right: 0,
       bottom: 0,
       width: '100%',
-      filter: 'blur(60px)',
-      '-webkit-filter': 'blur(60px)',
-      transition: '0.2s',
-      '-moz-transition': 'filter 0.2s',
-      '-webkit-transition': 'filter 0.2s'
+      // filter: 'blur(60px)',
+      // '-webkit-filter': 'blur(60px)',
+      // transition: '0.2s',
+      // '-moz-transition': 'filter 0.2s',
+      // '-webkit-transition': 'filter 0.2s'
     });
 
     $('body').append(backgroundImage);
@@ -60,11 +60,16 @@ var effects = {
   },
 
   cursorImage: function(el) {
-    el.css({cursor: `url(${el.data('params')}), auto`});
+    el.css({
+      cursor: `url(${el.data('params')}), auto`
+    });
   },
 
   backgroundHighlight(el) {
-    el.css({position: 'relative', zIndex: 0})
+    el.css({
+      position: 'relative',
+      zIndex: 0
+    })
     $('#backgroundImage').attr('src', el.data('params'));
     el.on('mouseenter', function() {
       $(this).css('z-index', 2);
@@ -143,6 +148,70 @@ var effects = {
         left: pos.left + vel.x
       });
     }, 20);
+  },
+
+  wordVomit(el) {
+    el.css({position: 'relative'});
+
+    var dist = el.data('dist') || 40,
+        speed = el.data('speed') || 1,
+        gray = el.data('gray'),
+        c1 = el.data('c1') || '#ff0000',
+        c2 = el.data('c2') || '#0000ff';
+
+    var vom = [];
+    var loop = setInterval(function() {
+      vom
+        .filter(l => {
+          var pos = l.position();
+          var keep = pos.top / dist < 1;
+          if (!keep) {
+            l.remove();
+          }
+          return keep;
+        })
+        .map(l => {
+          var pos = l.position();
+          l.css('top', `${pos.top + speed}px`);
+          if (gray) {
+            l.css('color',
+              shadeColor('#000000', pos.top / dist));
+          } else {
+            l.css('color',
+              blendColors(c1, c2, pos.top / dist));
+          }
+          return l;
+        });
+    }, 20);
+
+    var word = el.text();
+
+    var spawn_loop;
+    el.on('mouseenter', function() {
+      // var vom_el = makeVom(word);
+      // vom.push(vom_el);
+      // $(this).append(vom_el);
+      spawn_loop = setInterval(() => {
+        var vom_el = makeVom(word);
+        vom.push(vom_el);
+        $(this).append(vom_el);
+      }, 20);
+    });
+
+    el.on('mouseleave', function() {
+      clearInterval(spawn_loop);
+    });
+
+    function makeVom(word){
+      var vom_el = $(`<span class="vom">${word}</span>`);
+      vom_el.css({
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        zIndex: -1
+      });
+      return vom_el;
+    }
   },
 
   popover: function(el){
