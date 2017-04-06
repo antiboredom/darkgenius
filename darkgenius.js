@@ -83,6 +83,73 @@ var effects = {
     });
   },
 
+  textBackground: function(el) {
+    el.css({
+      color: el.data('color') || el.css('color'),
+      backgroundImage: `url(${el.data('image')})`,
+      backgroundSize: el.data('size') || 'contain',
+      padding: '0 1em'
+    });
+  },
+
+  orbit: function(el) {
+    var height = el.height(),
+        width = el.width(),
+        imgHeight = el.data('imageHeight') || 20,
+        imgWidth = el.data('imageWidth') || 20,
+        bounds = 4,
+        img = $(`<img src="${el.data('image')}">`),
+        vel = {
+          x: Math.random() - 0.5,
+          y: Math.random() - 0.5
+        },
+        center = {
+          x: width/2,
+          y: height/2
+        };
+    el.css({
+      position: 'relative'
+    });
+    img.css({
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: imgWidth,
+      height: imgHeight,
+      zIndex: 1
+    });
+    el.append(img);
+    setInterval(function() {
+      var pos = img.position();
+      var force = {
+        x: -(pos.left - center.x)/1000,
+        y: -(pos.top - center.y)/1000,
+      }
+
+      var xpos = vel.x >= 0;
+      vel.x += force.x;
+      vel.y += force.y;
+      var xpos_ = vel.x >= 0;
+
+      // bring to front/back
+      if (xpos !== xpos_) {
+        var z = img.css('zIndex');
+        img.css('zIndex', z * -1);
+      }
+
+      if (pos.top < -bounds - imgHeight/2 || pos.top > height + bounds) {
+        vel.y *= -1;
+      }
+      if (pos.left < -bounds || pos.left > width + bounds) {
+        vel.x *= -1;
+      }
+      img.css({
+        top: pos.top + vel.y,
+        left: pos.left + vel.x
+      });
+    }, 20);
+  },
+
   wordVomit(el) {
     el.css({position: 'relative'});
 
@@ -203,14 +270,14 @@ var effects = {
     var src = el.data('image'),
         cls = el.data('class'),
         color = el.css('color'),
-        imgEl = $(`<img src="${src}" data-image="${src}" class="${cls ? cls : ''}">`);
+        imgEl = $(`<img src="${src}" data-media="${src}" class="${cls ? cls : ''}">`);
     imgEl.css({
       height: el.data('height') || '1.2em',
       margin: el.data('margin') || '0 0.2em -0.2em',
       cursor: 'zoom-in'
     });
     el.append(imgEl);
-    effects.hover(imgEl);
+    effects.popover(imgEl);
 
     imgEl.on('mouseenter', function() {
       el.css({
