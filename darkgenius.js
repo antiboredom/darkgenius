@@ -21,14 +21,53 @@ function blendColors(c0, c1, p) {
 }
 
 var effects = {
+  init: function() {
+    var backgroundImage = $('<img id="backgroundImage">');
+    backgroundImage.css({
+      filter: 'contrast(30%) brightness(200%)',
+      zIndex: 1,
+      display: 'none',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      width: '100%',
+      filter: 'blur(60px)',
+      '-webkit-filter': 'blur(60px)',
+      transition: '0.2s',
+      '-moz-transition': 'filter 0.2s',
+      '-webkit-transition': 'filter 0.2s'
+    });
+
+    $('body').append(backgroundImage);
+  },
+
   bg: function(el) {
 
   },
 
   cursorImage: function(el) {
     el.css({cursor: `url(${el.data('params')}), auto`});
+  },
+
+  backgroundHighlight(el) {
+    el.css({position: 'relative', zIndex: 0})
+    $('#backgroundImage').attr('src', el.data('params'));
+    el.on('mouseenter', function() {
+      $(this).css('z-index', 2);
+      $(this).css('text-shadow', '2px 2px 4px rgba(0,0,0,0.4)');
+      $('#backgroundImage').fadeIn();
+    });
+    el.on('mouseleave', function() {
+      $(this).css('z-index', 0);
+      $(this).css('text-shadow', 'none');
+      $('#backgroundImage').fadeOut();
+    });
   }
 }
+
+effects.init();
 
 $('.annotate').each(function(el) {
   effects[$(this).data('effect')]($(this));
