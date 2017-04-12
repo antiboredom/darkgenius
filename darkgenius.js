@@ -226,6 +226,7 @@ var effects = {
 
   popover: function(el){
     el.css({
+      cursor: 'zoom-in',
       textDecoration: 'underline'
     });
     el.on('mouseenter', function() {
