@@ -1,19 +1,12 @@
-body {
-  max-width: 920px;
-  margin: 2em auto;
-  line-height: 1.5;
-  font-size: 1.2em;
-}
-
-.gradient {
+.dg-gradient {
   transition: .1s all;
 }
 
-.gradient:hover {
+.dg-gradient:hover {
   display: inline-block;
   background: linear-gradient(270deg, #08fdff, #ff08d5);
   background-size: 400% 400%;
-  animation-name: gradient;
+  animation-name: dg-gradient;
   animation-duration: .6s;
   animation-direction: normal;
   animation-iteration-count: infinite;
@@ -22,30 +15,29 @@ body {
   transform: scale(1.2);
 }
 
-
-.twitch:hover {
+.dg-twitch:hover {
   display: inline-block;
-  animation-name: twitch;
+  animation-name: dg-twitch;
   animation-duration: .1s;
   animation-direction: normal;
   animation-iteration-count: infinite;
 }
 
-.enlarge:hover {
+.dg-enlarge:hover {
   display: inline-block;
-  animation-name: enlarge;
+  animation-name: dg-enlarge;
   animation-duration: 1s;
   animation-direction: normal;
   animation-iteration-count: infinite;
 }
 
-@keyframes gradient {
+@keyframes dg-gradient {
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
 
-@keyframes twitch {
+@keyframes dg-twitch {
   0% {
     transform: rotate(-2deg);
   }
@@ -53,7 +45,7 @@ body {
     transform: rotate(2deg);
   }
 }
-@keyframes enlarge {
+@keyframes dg-enlarge {
   0% {
     transform: scale(1);
   }
@@ -63,7 +55,7 @@ body {
   }
 }
 
-.rainbow {
+.dg-rainbow {
   cursor:pointer;
   -webkit-transition-property: background;
   -webkit-transition-duration: 3s;
@@ -76,7 +68,7 @@ body {
   -webkit-background-clip: text;
   padding: 0 0.5em;
 }
-.rainbow:hover{
+.dg-rainbow:hover{
   -webkit-transition-property: background;
   -webkit-transition-duration: 2s;
   -webkit-transition-timing-function: ease-out;
@@ -85,14 +77,14 @@ body {
   -webkit-background-clip: text;
 }
 
-.skew {
+.dg-skew {
   display: inline-block;
-  animation: anim_skew 2s infinite;
+  animation: dg-skew 2s infinite;
   animation-direction: alternate;
   transition-timing-function: ease-in-out;
 }
 
-@keyframes anim_skew {
+@keyframes dg-skew {
   0%   { transform: skew(4deg, 4deg); }
   100% { transform: skew(-4deg, -4deg); }
 }

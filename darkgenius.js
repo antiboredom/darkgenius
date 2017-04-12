@@ -298,36 +298,9 @@ var effects = {
     });
   },
 
-  rainbow: function(el) {
-    var style = {
-      '-webkit-transition-property': 'background',
-      '-webkit-transition-duration': '3s',
-      '-webkit-transition-timing-function': 'ease-out',
-      'background': '-webkit-linear-gradient(left,  rgba(255,0,0,1) 0%,rgba(255,255,0,1) 19%,rgba(0,255,0,1) 38%,rgba(0,255,255,1) 51%,rgba(0,0,255,1) 67%,rgba(255,0,255,1) 83%,rgba(255,0,0,1) 99%)',
-      'background-position': '0px'
-    };
-
-    el.css(style);
-    el.css({
-      color: '#222',
-      cursor: 'pointer',
-      'text-shadow': '0px 0px 5px white',
-      'z-index': 3,
-      '-webkit-text-stroke': '5px rgba(255,255,255,.01)',
-      '-webkit-background-clip': 'text',
-      'padding': '0 0.5em'
-    });
-    el.on('mouseenter', function() {
-      el.css({
-        '-webkit-transition-property': 'background',
-        '-webkit-transition-duration': '2s',
-        '-webkit-transition-timing-function': 'ease-out',
-        'background': '-webkit-linear-gradient(right,  rgba(255,0,0,1) 0%,rgba(255,255,0,1) 19%,rgba(0,255,0,1) 38%,rgba(0,255,255,1) 51%,rgba(0,0,255,1) 67%,rgba(255,0,255,1) 83%,rgba(255,0,0,1) 99%)',
-        'background-position': '100px'
-      });
-    }).on('mouseleave', function() {
-      el.css(style);
-    });
+  text: function(el) {
+    var name = el.data('name');
+    el.addClass(`dg-${name}`);
   }
 }
 
