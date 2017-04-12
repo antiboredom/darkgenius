@@ -247,7 +247,8 @@ var effects = {
       mediaEl.css({
         'max-width': maxWidth,
         'max-height': maxHeight,
-        'display': 'block'
+        'display': 'block',
+        'box-shadow': 'rgba(0, 0, 0, 0.2) 0 0 8px'
       });
 
       popover.html(mediaEl).show();
