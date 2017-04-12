@@ -307,7 +307,7 @@ var effects = {
       '-webkit-transition-timing-function': 'ease-out',
       'text-shadow': '0px 0px 5px white',
       'z-index': 3,
-      'background': '-webkit-linear-gradient(left,  rgba(255,0,0,1) 0%,rgba(255,255,0,1) 19%,rgba(0,255,0,1) 38%,rgba(0,255,255,1) 51%,rgba(0,0,255,1) 67%,rgba(255,0,255,1) 83%,rgba(255,0,0,1) 99%)'
+      'background': '-webkit-linear-gradient(left,  rgba(255,0,0,1) 0%,rgba(255,255,0,1) 19%,rgba(0,255,0,1) 38%,rgba(0,255,255,1) 51%,rgba(0,0,255,1) 67%,rgba(255,0,255,1) 83%,rgba(255,0,0,1) 99%)',
       '-webkit-text-stroke': '5px rgba(255,255,255,.01)',
       '-webkit-background-clip': 'text',
       'padding': '0 0.5em'
