@@ -272,16 +272,18 @@ var effects = {
     var src = el.data('image'),
         cls = el.data('class'),
         color = el.css('color'),
-        imgEl = $(`<img src="${src}" data-media="${src}" class="${cls ? cls : ''}">`);
+        imgEl = $(`<img src="${src}" class="${cls ? cls : ''}">`);
     imgEl.css({
-      height: el.data('height') || '1.2em',
-      margin: el.data('margin') || '0 0.2em -0.2em',
+      height: el.data('height') || '1.4em',
+      margin: el.data('margin') || '0 0.2em',
+      verticalAlign: 'middle',
       cursor: 'zoom-in'
     });
+    el.data('media', src);
     el.append(imgEl);
-    effects.popover(imgEl);
+    effects.popover(el);
 
-    imgEl.on('mouseenter', function() {
+    el.on('mouseenter', function() {
       el.css({
         color: el.data('color') || 'red'
       });
