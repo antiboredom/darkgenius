@@ -307,7 +307,6 @@ var effects = {
 effects.init();
 
 $('.annotate').each(function(el) {
-  console.log($(this).data('effect'));
   effects[$(this).data('effect')]($(this));
 });
 
