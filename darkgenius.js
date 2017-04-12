@@ -225,6 +225,9 @@ var effects = {
   },
 
   popover: function(el){
+    el.css({
+      textDecoration: 'underline'
+    });
     el.on('mouseenter', function() {
       var src = el.data('media'),
           caption = el.data('caption'),
