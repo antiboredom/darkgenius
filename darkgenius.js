@@ -279,6 +279,9 @@ var effects = {
       verticalAlign: 'middle',
       cursor: 'zoom-in'
     });
+    el.css({
+      cursor: 'zoom-in'
+    });
     el.data('media', src);
     el.append(imgEl);
     effects.popover(el);
