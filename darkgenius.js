@@ -118,9 +118,9 @@ var effects = {
       height: imgHeight,
       zIndex: 1
     });
+    var pos = {left: 0, top: 0};
     el.append(img);
     setInterval(function() {
-      var pos = img.position();
       var force = {
         x: -(pos.left - center.x)/1000,
         y: -(pos.top - center.y)/1000,
@@ -147,6 +147,8 @@ var effects = {
         top: pos.top + vel.y,
         left: pos.left + vel.x
       });
+
+      pos = img.position();
     }, 20);
   },
 
