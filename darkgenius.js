@@ -300,7 +300,7 @@ var effects = {
 
   rainbow: function(el) {
     el.css({
-      color: '#222';
+      color: '#222',
       cursor: 'pointer',
       '-webkit-transition-property': 'background',
       '-webkit-transition-duration': '3s',
