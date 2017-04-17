@@ -225,10 +225,6 @@ var effects = {
   },
 
   popover: function(el){
-    el.css({
-      cursor: 'zoom-in',
-      textDecoration: 'underline'
-    });
     el.on('mouseenter', function() {
       var src = el.data('media'),
           caption = el.data('caption'),
