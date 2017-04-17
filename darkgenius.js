@@ -282,7 +282,8 @@ var effects = {
       height: el.data('height') || '1.4em',
       margin: el.data('margin') || '0 0.2em',
       verticalAlign: 'middle',
-      cursor: 'zoom-in'
+      cursor: 'zoom-in',
+      display: 'inline'
     });
     el.css({
       cursor: 'zoom-in',
