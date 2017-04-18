@@ -51,7 +51,7 @@ var effects = {
       display: 'none',
       position: 'fixed',
       'pointer-events': 'none',
-      zIndex: 2
+      zIndex: 100
     });
     $('body').append(popover);
   },
