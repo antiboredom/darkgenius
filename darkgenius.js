@@ -50,7 +50,8 @@ var effects = {
     popover.css({
       display: 'none',
       position: 'fixed',
-      'pointer-events': 'none'
+      'pointer-events': 'none',
+      zIndex: 2
     });
     $('body').append(popover);
   },
@@ -229,7 +230,7 @@ var effects = {
       var src = el.data('media'),
           caption = el.data('caption'),
           maxWidth = el.data('max-width') || 400,
-          maxHeight = el.data('max-height') || '50vh',
+          maxHeight = el.data('max-height') || '40vh',
           mediaEl;
       if (imgExts.some(ext => src.endsWith(ext))) {
         mediaEl = $(`<img src="${src}" class="${cls ? cls : ''}">`);
