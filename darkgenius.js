@@ -329,11 +329,15 @@ document.addEventListener('mousemove', e => {
     yOffset = e.pageY - offset.y - scrollTop - popover.height();
   }
 
+  if (e.clientX + popover.width()/2 > window.innerWidth) {
+    xOffset -= e.clientX + popover.width()/2 - window.innerWidth;
+  } else if (e.clientX - popover.width()/2 < 0) {
+    xOffset += -e.clientX + popover.width()/2;
+  }
+
   popover.css({
     left: (e.pageX + xOffset) + 'px',
     top: yOffset + 'px'
   });
-
-  console.log(e.clientX);
 
 });
