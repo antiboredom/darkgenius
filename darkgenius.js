@@ -261,9 +261,9 @@ var effects = {
       }
 
       var cls = el.data('class');
-      clearTimeout(el.timer);
+      clearTimeout(popover.timer);
     }).on('mouseleave', function() {
-      el.timer = setTimeout(function() {
+      popover.timer = setTimeout(function() {
         popover.hide();
       }, 10);
     });
