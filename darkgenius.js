@@ -1,5 +1,5 @@
 const popover = $('<div class="popover"></div>');
-const offset = {x:10, y:10};
+const offset = {x:10, y:30};
 const imgExts = ['.jpg', '.jpeg', '.png', '.gif'];
 const vidExts = ['.mp4'];
 
@@ -229,7 +229,7 @@ var effects = {
       var src = el.data('media'),
           caption = el.data('caption'),
           maxWidth = el.data('max-width') || 400,
-          maxHeight = el.data('max-height') || 400,
+          maxHeight = el.data('max-height') || '50vh',
           mediaEl;
       if (imgExts.some(ext => src.endsWith(ext))) {
         mediaEl = $(`<img src="${src}" class="${cls ? cls : ''}">`);
@@ -260,7 +260,6 @@ var effects = {
       }
 
       var cls = el.data('class');
-      offset.x = -popover.width()/2;
       clearTimeout(el.timer);
     }).on('mouseleave', function() {
       el.timer = setTimeout(function() {
@@ -315,8 +314,19 @@ $('.annotate').each(function(el) {
 
 document.addEventListener('mousemove', e => {
   var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+  var top = e.clientY <= window.innerHeight/2,
+      xOffset = -popover.width()/2,
+      yOffset;
+  if (top) {
+    yOffset = e.pageY + offset.y - scrollTop;
+  } else {
+    yOffset = e.pageY - offset.y - scrollTop - popover.height();
+  }
+
   popover.css({
-    left: (e.pageX + offset.x) + 'px',
-    top: (e.pageY + offset.y - scrollTop) + 'px'
+    left: (e.pageX + xOffset) + 'px',
+    top: yOffset + 'px'
   });
+
 });
