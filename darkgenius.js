@@ -231,6 +231,7 @@ var effects = {
           caption = el.data('caption'),
           maxWidth = el.data('max-width') || 400,
           maxHeight = el.data('max-height') || '40vh',
+          boxShadow = el.data('box-shadow') != '0',
           mediaEl;
       if (imgExts.some(ext => src.endsWith(ext))) {
         mediaEl = $(`<img src="${src}" class="${cls ? cls : ''}">`);
@@ -245,8 +246,11 @@ var effects = {
         'max-width': maxWidth,
         'max-height': maxHeight,
         'display': 'block',
-        'box-shadow': 'rgba(0, 0, 0, 0.2) 0 0 8px'
       });
+
+      if (boxShadow) {
+        mediaEl.css('box-shadow', 'rgba(0, 0, 0, 0.2) 0 0 8px');
+      }
 
       popover.html(mediaEl).show();
       if (caption) {
@@ -329,5 +333,7 @@ document.addEventListener('mousemove', e => {
     left: (e.pageX + xOffset) + 'px',
     top: yOffset + 'px'
   });
+
+  console.log(e.clientX);
 
 });
